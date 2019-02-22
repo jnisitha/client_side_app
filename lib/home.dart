@@ -15,7 +15,8 @@ class HomePage extends StatelessWidget {
         ],
       ),
       backgroundColor: Colors.lightBlue[50],
-      body: HomeBody(), //prolly a better way of doing this exists.
+      body:
+          Center(child: HomeBody()), //prolly a better way of doing this exists.
       bottomNavigationBar: BottomAppBar(),
     );
   }
@@ -47,12 +48,18 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child: Column(
-          children: <Widget>[
-            Row(children: <Widget>[requestServiceRentalButtons]),
-            Row(children: <Widget>[CommunityFeedList()]),
-            //ListView()
-          ],
-        ));
+      children: <Widget>[
+        Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[requestServiceRentalButtons]),
+        Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[CommunityFeedList()]),
+        //ListView()
+      ],
+    ));
   }
 }
 
@@ -174,28 +181,21 @@ class CommunityFeedList extends StatefulWidget {
 }
 
 class _CommunityFeedList extends State<CommunityFeedList> {
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 467.0,
+        height: 467.0,
         width: 300.0,
-        child: ListView.builder(
+        child: Card(
+            child: ListView.builder(
           padding: EdgeInsets.all(8.0),
           itemExtent: 20.0,
           itemBuilder: (BuildContext context, int index) {
+            if (index.isOdd) return Divider();
+
             return CommunityFeedListTile();
           },
-
-//      children: <Widget>[
-//        CommunityFeedListTile(),
-//        CommunityFeedListTile(),
-//        CommunityFeedListTile(),
-//        CommunityFeedListTile(),
-//        CommunityFeedListTile(),
-//      ],
-    ));
+        )));
   }
 }
 
@@ -208,10 +208,13 @@ class CommunityFeedListTile extends StatefulWidget {
 }
 
 class _CommunityFeedListTile extends State<CommunityFeedListTile> {
-
+  //consider cards.
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        leading: Icon(Icons.accessibility_new), title: Text("This is Tile"));
+      leading: Icon(Icons.accessibility_new),
+      title: Text("This is A community and it's feed"),
+      onTap: () {},
+    );
   }
 }
