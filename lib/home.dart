@@ -35,12 +35,12 @@ class HomeBody extends StatelessWidget {
             ),
             RaisedButton(
               color: Colors.lightBlueAccent,
-              child: const Text('Request'),
+              child: const Text('Service'),
               onPressed: (){},
             ),
             RaisedButton(
               color: Colors.lightBlueAccent,
-              child: const Text('Request'),
+              child: const Text('Rental'),
               onPressed: (){},
             ),
           ],
