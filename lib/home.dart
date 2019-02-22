@@ -4,6 +4,16 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(context: context, delegate: SearchBar());
+            },
+          )
+        ],
+      ),
       backgroundColor: Colors.lightBlue[50],
       body: HomeBody(), //prolly a better way of doing this exists.
       bottomNavigationBar: BottomAppBar(),
@@ -12,7 +22,6 @@ class HomePage extends StatelessWidget {
 }
 
 class HomeBody extends StatelessWidget {
-
   final requestServiceRentalButtons = ButtonBar(
     alignment: MainAxisAlignment.center,
     children: <Widget>[
@@ -34,25 +43,16 @@ class HomeBody extends StatelessWidget {
     ],
   );
 
-
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        AppBar(
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                showSearch(context: context, delegate: SearchBar());
-              },
-            )
+    return Container(
+        child: Column(
+          children: <Widget>[
+            Row(children: <Widget>[requestServiceRentalButtons]),
+            Row(children: <Widget>[CommunityFeedList()]),
+            //ListView()
           ],
-        ),
-        requestServiceRentalButtons,
-        //ListView()
-      ],
-    );
+        ));
   }
 }
 
@@ -65,6 +65,7 @@ class SearchBar extends SearchDelegate<String> {
     "Bulbasaur",
     "Charmander"
   ];
+
   final recentCommunityNames = ["Fairbank", "Thatcher"];
 
   @override
@@ -163,18 +164,54 @@ class BottomAppBar extends StatelessWidget {
   }
 }
 
-class CommunityFeed extends StatefulWidget {
+class CommunityFeedList extends StatefulWidget {
+  /* This is the list of all the favorited/liked communities of the current User.const
+      Changes based on his/her interests and likes which can also change.
+   */
 
   @override
-  _CommunityFeed createState() => _CommunityFeed();
-
-
+  _CommunityFeedList createState() => _CommunityFeedList();
 }
 
-class _CommunityFeed extends State<CommunityFeed> {
+class _CommunityFeedList extends State<CommunityFeedList> {
+
 
   @override
   Widget build(BuildContext context) {
+    return Container(
+      height: 467.0,
+        width: 300.0,
+        child: ListView.builder(
+          padding: EdgeInsets.all(8.0),
+          itemExtent: 20.0,
+          itemBuilder: (BuildContext context, int index) {
+            return CommunityFeedListTile();
+          },
 
+//      children: <Widget>[
+//        CommunityFeedListTile(),
+//        CommunityFeedListTile(),
+//        CommunityFeedListTile(),
+//        CommunityFeedListTile(),
+//        CommunityFeedListTile(),
+//      ],
+    ));
+  }
+}
+
+class CommunityFeedListTile extends StatefulWidget {
+  /*  This Widget displays an individual communities feed which is/can be related to the current users interests.
+      It changes based on the postings in the Community page.
+  */
+  @override
+  _CommunityFeedListTile createState() => _CommunityFeedListTile();
+}
+
+class _CommunityFeedListTile extends State<CommunityFeedListTile> {
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+        leading: Icon(Icons.accessibility_new), title: Text("This is Tile"));
   }
 }
