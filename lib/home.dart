@@ -4,6 +4,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightBlue[50],
       body: HomeBody(), //prolly a better way of doing this exists.
       bottomNavigationBar: BottomAppBar(),
     );
@@ -31,17 +32,17 @@ class HomeBody extends StatelessWidget {
             RaisedButton(
               color: Colors.lightBlueAccent,
               child: const Text('Request'),
-              onPressed: (){}, //Route to other pages
+              onPressed: () {}, //Route to other pages
             ),
             RaisedButton(
               color: Colors.lightBlueAccent,
               child: const Text('Service'),
-              onPressed: (){},
+              onPressed: () {},
             ),
             RaisedButton(
               color: Colors.lightBlueAccent,
               child: const Text('Rental'),
-              onPressed: (){},
+              onPressed: () {},
             ),
           ],
         ),
@@ -87,7 +88,8 @@ class SearchBar extends SearchDelegate<String> {
   }
 
   @override
-  Widget buildResults(BuildContext context) { //This should direct to whatever route the query gives.
+  Widget buildResults(BuildContext context) {
+    //This should direct to whatever route the query gives.
     return Container(
         height: 100.0,
         width: 100.0,
@@ -135,31 +137,22 @@ class BottomAppBar extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 10.0),
         decoration: BoxDecoration(color: Colors.lightBlue),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Expanded(
-              child: IconButton(
-                icon: Icon(Icons.search),
-              ),
+            IconButton(
+              icon: Icon(Icons.search),
             ),
-            Expanded(
-              child: IconButton(
-                icon: Icon(Icons.favorite),
-              ),
+            IconButton(
+              icon: Icon(Icons.favorite),
             ),
-            Expanded(
-              child: IconButton(
-                icon: Icon(Icons.message),
-              ),
+            IconButton(
+              icon: Icon(Icons.message),
             ),
-            Expanded(
-              child: IconButton(
-                icon: Icon(Icons.supervisor_account),
-              ),
+            IconButton(
+              icon: Icon(Icons.supervisor_account),
             ),
-            Expanded(
-              child: IconButton(
-                icon: Icon(Icons.add),
-              ),
+            IconButton(
+              icon: Icon(Icons.add),
             ),
           ],
         ));
