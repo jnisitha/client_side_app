@@ -12,6 +12,29 @@ class HomePage extends StatelessWidget {
 }
 
 class HomeBody extends StatelessWidget {
+
+  final requestServiceRentalButtons = ButtonBar(
+    alignment: MainAxisAlignment.center,
+    children: <Widget>[
+      RaisedButton(
+        color: Colors.lightBlueAccent,
+        child: const Text('Request'),
+        onPressed: () {}, //Route to other pages
+      ),
+      RaisedButton(
+        color: Colors.lightBlueAccent,
+        child: const Text('Service'),
+        onPressed: () {},
+      ),
+      RaisedButton(
+        color: Colors.lightBlueAccent,
+        child: const Text('Rental'),
+        onPressed: () {},
+      ),
+    ],
+  );
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,26 +49,7 @@ class HomeBody extends StatelessWidget {
             )
           ],
         ),
-        ButtonBar(
-          alignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-              color: Colors.lightBlueAccent,
-              child: const Text('Request'),
-              onPressed: () {}, //Route to other pages
-            ),
-            RaisedButton(
-              color: Colors.lightBlueAccent,
-              child: const Text('Service'),
-              onPressed: () {},
-            ),
-            RaisedButton(
-              color: Colors.lightBlueAccent,
-              child: const Text('Rental'),
-              onPressed: () {},
-            ),
-          ],
-        ),
+        requestServiceRentalButtons,
         //ListView()
       ],
     );
@@ -156,5 +160,21 @@ class BottomAppBar extends StatelessWidget {
             ),
           ],
         ));
+  }
+}
+
+class CommunityFeed extends StatefulWidget {
+
+  @override
+  _CommunityFeed createState() => _CommunityFeed();
+
+
+}
+
+class _CommunityFeed extends State<CommunityFeed> {
+
+  @override
+  Widget build(BuildContext context) {
+
   }
 }
