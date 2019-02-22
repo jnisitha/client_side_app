@@ -4,7 +4,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HomeBody(),
+      body: HomeBody(), //prolly a better way of doing this exists.
       bottomNavigationBar: BottomAppBar(),
     );
   }
@@ -29,13 +29,19 @@ class HomeBody extends StatelessWidget {
           alignment: MainAxisAlignment.center,
           children: <Widget>[
             RaisedButton(
+              color: Colors.lightBlueAccent,
               child: const Text('Request'),
+              onPressed: (){}, //Route to other pages
             ),
             RaisedButton(
+              color: Colors.lightBlueAccent,
               child: const Text('Request'),
+              onPressed: (){},
             ),
             RaisedButton(
+              color: Colors.lightBlueAccent,
               child: const Text('Request'),
+              onPressed: (){},
             ),
           ],
         ),
