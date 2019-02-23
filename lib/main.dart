@@ -42,16 +42,88 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class CreateCommunityPage extends StatelessWidget {
+class CreateCommunityPage extends StatefulWidget {
   @override
+  _CreateCommunityPageState createState () => new _CreateCommunityPageState();
+}
+
+class _CreateCommunityPageState extends State<CreateCommunityPage> {
+
+  final createCommunityFormKey = GlobalKey<FormState>();
+  String _name, _description;
+
+  void _submit() {
+    // If for validation pass, call form save
+    // for save will call onSaved method for each TextFormField
+    if(createCommunityFormKey.currentState.validate()) {
+      createCommunityFormKey.currentState.save();
+      print(_name);
+      print(_description);
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Communities Branch'),
+        title: Text('Create New Community'),
       ),
-      body: Center(
-        child: Text('Create Communities page'),
-      ),
+      body: Card(
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Form(
+            key: createCommunityFormKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                new ListTile(
+                  leading: const Icon(Icons.group_add),
+                  title: new TextFormField(
+                    decoration: new InputDecoration(
+                      hintText: "Community Name",
+                      border: OutlineInputBorder(),
+                      labelText: 'Community Name',
+                    ),
+                    validator: (input) => input.isEmpty ? 'Community Name Is Required' : null,
+                    onSaved: (input) => _name = input,
+                  ),
+                ),
+                new ListTile(
+                  leading: const Icon(Icons.description),
+                  title: new TextFormField(
+                    decoration: new InputDecoration(
+                      hintText: "Community Description",
+                      border: OutlineInputBorder(),
+                      labelText: 'Community Description',
+                    ),
+                    validator: (input) => input.isEmpty ? 'Community Description Is Required' : null,
+                    onSaved: (input) => _description = input,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                  ),
+                ),
+                new Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: RaisedButton(
+                        color: Colors.red,
+                        onPressed: _submit,
+                        child: Text(
+                          'Create Community',
+                          style: TextStyle(
+                            color: Colors.white
+                          ),
+                        ),
+                      )
+                    )
+                  ],
+                )
+              ],
+            )
+          ),
+        ),
+      ) 
     );
   }
 }
