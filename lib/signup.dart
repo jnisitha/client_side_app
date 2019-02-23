@@ -1,44 +1,87 @@
 import 'package:flutter/material.dart';
+import 'signup.dart';
 
-//class SecondRoute extends StatelessWidget {
-//  @override
-//  Widget build(BuildContext context) {
-//    return Scaffold(
-//      appBar: AppBar(
-//        title: Text("Second Route"),
-//      ),
-//      body: Center(
-//        child: RaisedButton(
-//          // Within the SecondRoute widget
-//          onPressed: () {
-//            Navigator.pop(context);
-//          },
-//          child: Text('Go back!'),
-//        ),
-//      ),
-//    );
-//  }
-//}
+//=============== TUTORIAL ================== //
 
-//NAMED ROUTE NAVIGATION ====================================
-class SignUp extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Sign Up"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
-    );
-  }
+  _SignUpPage createState() => new _SignUpPage();
 }
 
+class _SignUpPage extends State<SignUpPage> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final formKey = GlobalKey<FormState>();
+
+  String _email;
+  String _password;
+
+  void _SignUp(){
+    final loginForm = formKey.currentState;
+
+    if(loginForm.validate()){
+      loginForm.save();
+
+      _performSignUp();
+      Navigator.pushNamed(context, '/home');
+    }
+  }
+
+  void _performSignUp(){
+    final snackbar = SnackBar(
+      content: Text("Email: $_email, password: $_password"),
+    );
+
+    scaffoldKey.currentState.showSnackBar(snackbar);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        key: scaffoldKey,
+        appBar: AppBar(
+          title: Text("Sign Up"),
+        ),
+        body: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Form(
+                key: formKey,
+                child: Column(
+                  children: <Widget>[
+                    //THIS ============== might just pass to firebase.
+                    TextFormField(
+                      decoration: InputDecoration(labelText: "Email"),
+                      validator: (val)=> !val.contains('@')?'Invalid Email':null,
+                      onSaved: (val)=> _email = val,
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(labelText: "Password"),
+                      validator: (val)=> val.length<6 ? 'Please enter a password longer than 6 characters':null,
+                      onSaved: (val)=> _password = val,
+                      obscureText: true,
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(top: 15.0)
+                    ),
+                    RaisedButton(
+                        color: Colors.lightBlue,
+
+                        child: Text("Sign Up"),
+                        onPressed: () {
+                          //SIGN UP LOGIC HERE.
+                          _SignUp();
+                        }),
+
+                  ],
+                ))));
+  }
+}
