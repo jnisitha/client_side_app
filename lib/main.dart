@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
       ),
       home: MyHomePage(),
       routes: <String, WidgetBuilder> {
-        "/CreateCommunityPage": (BuildContext context) => new CreateCommunityPage() 
+        "/CreateCommunityPage": (BuildContext context) => new CreateCommunityPage(),
+        "/CommunityPage": (BuildContext context) => new CommunityPage()
       }
     );
   }
@@ -52,13 +53,20 @@ class _CreateCommunityPageState extends State<CreateCommunityPage> {
   final createCommunityFormKey = GlobalKey<FormState>();
   String _name, _description;
 
+  void _goToCommunityPage(BuildContext context) {
+    Navigator.pushNamed(context, '/CommunityPage');
+  }
+
   void _submit() {
     // If for validation pass, call form save
     // for save will call onSaved method for each TextFormField
     if(createCommunityFormKey.currentState.validate()) {
       createCommunityFormKey.currentState.save();
+      // Make a post request to backend server
+      // On success, navigate user to newly created community page
       print(_name);
       print(_description);
+      _goToCommunityPage(context);
     }
   }
 
@@ -124,6 +132,26 @@ class _CreateCommunityPageState extends State<CreateCommunityPage> {
           ),
         ),
       ) 
+    );
+  }
+}
+
+
+
+class CommunityPage extends StatelessWidget {
+
+  final String communityName = 'Birchmount Community Centre';
+  final String communityDescription = 'The Birchmount Community Centre is a multipurpose facility with programs & services offered through the Birchmount Bluffs Neighbourhood Centre.';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(communityName),
+      ),
+      body: Center(
+        child: Text(communityDescription)
+      ),
     );
   }
 }
