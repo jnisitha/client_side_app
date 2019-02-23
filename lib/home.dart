@@ -184,9 +184,9 @@ class _CommunityFeedList extends State<CommunityFeedList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 467.0,
+        height: 500.0,
         width: 300.0,
-        child: Card(
+//        child: Card(
             child: ListView.builder(
           padding: EdgeInsets.all(8.0),
           itemExtent: 20.0,
@@ -195,7 +195,7 @@ class _CommunityFeedList extends State<CommunityFeedList> {
 
             return CommunityFeedListTile();
           },
-        )));
+        ));
   }
 }
 
@@ -211,10 +211,10 @@ class _CommunityFeedListTile extends State<CommunityFeedListTile> {
   //consider cards.
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(Icons.accessibility_new),
-      title: Text("This is A community and it's feed"),
-      onTap: () {},
-    );
+    return Container(
+      height: 20.0,
+      child: Row(
+      children: <Widget>[Text("Community A")],
+    ));
   }
 }
