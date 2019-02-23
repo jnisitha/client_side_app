@@ -21,12 +21,12 @@ import 'package:flutter/material.dart';
 //}
 
 //NAMED ROUTE NAVIGATION ====================================
-class SecondScreen extends StatelessWidget {
+class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second Screen"),
+        title: Text("Sign Up"),
       ),
       body: Center(
         child: RaisedButton(
@@ -41,3 +41,4 @@ class SecondScreen extends StatelessWidget {
     );
   }
 }
+

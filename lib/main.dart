@@ -16,9 +16,10 @@ void main() {
       initialRoute: '/',  //Should be login page for now.
       routes: {
         // When we navigate to the "/" route, build the FirstScreen Widget
-        '/': (context) => FirstScreen(),
+        '/': (context) => Login(),
         // When we navigate to the "/second" route, build the SecondScreen Widget
-        '/second': (context) => SecondScreen(),
+        '/signup': (context) => SignUp(),
+        '/home' : (context) => HomePage(),
       },
 
     debugShowCheckedModeBanner: false,

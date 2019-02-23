@@ -24,22 +24,35 @@ import 'signup.dart';
 //  }
 //}
 
-
 //NAMED ROUTE NAVIGATION ====================================
-class FirstScreen extends StatelessWidget {
+class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Screen'),
+        title: Text('Login'),
       ),
       body: Center(
-        child: RaisedButton(
-          child: Text('Launch screen'),
-          onPressed: () {
-            // Navigate to the second screen using a named route
-            Navigator.pushNamed(context, '/second');
-          },
+        child: ButtonBar(
+          alignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton(
+              color: Colors.lightBlueAccent,
+              child: const Text('Login'),
+              onPressed: () {
+// Navigate to the second screen using a named route
+                Navigator.pushNamed(context, '/home');
+              }, //Route to other pages
+            ),
+            RaisedButton(
+              color: Colors.lightBlueAccent,
+              child: const Text('Sign Up'),
+              onPressed: () {
+// Navigate to the second screen using a named route
+                Navigator.pushNamed(context, '/signup');
+              },
+            ),
+          ],
         ),
       ),
     );
