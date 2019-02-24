@@ -142,6 +142,11 @@ class SearchBar extends SearchDelegate<String> {
 }
 
 class BottomAppBar extends StatelessWidget {
+  
+  void _goToCreateCommunityPage(BuildContext context) {
+    Navigator.pushNamed(context, '/CreateCommunityPage');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -165,6 +170,8 @@ class BottomAppBar extends StatelessWidget {
             ),
             IconButton(
               icon: Icon(Icons.add),
+              onPressed: () => _goToCreateCommunityPage(context),
+              tooltip: 'Create A Community',
             ),
           ],
         ));

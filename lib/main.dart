@@ -1,12 +1,10 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
-
 //import 'package:scoped_model/scoped_model.dart';
 import 'login.dart';
 import 'home.dart';
 import 'signup.dart';
+import 'communityPage.dart';
+import 'communityCreatePage.dart';
 
 void main() {
   //debugPaintSizeEnabled = true; //Shows visual debugging lines when enabled.
@@ -20,6 +18,8 @@ void main() {
         // When we navigate to the "/second" route, build the SecondScreen Widget
         '/signup': (context) => SignUpPage(),
         '/home' : (context) => HomePage(),
+        '/CreateCommunityPage': (context) => CreateCommunityPage(),
+        '/CommunityPage': (context) => CommunityPage()
       },
 
     debugShowCheckedModeBanner: false,
@@ -27,5 +27,3 @@ void main() {
     //home: FirstRoute(), //Need to create an app state so that relevant page can be shown.
   ));
 }
-
-
