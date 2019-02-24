@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'communityPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -132,26 +133,6 @@ class _CreateCommunityPageState extends State<CreateCommunityPage> {
           ),
         ),
       ) 
-    );
-  }
-}
-
-
-
-class CommunityPage extends StatelessWidget {
-
-  final String communityName = 'Birchmount Community Centre';
-  final String communityDescription = 'The Birchmount Community Centre is a multipurpose facility with programs & services offered through the Birchmount Bluffs Neighbourhood Centre.';
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(communityName),
-      ),
-      body: Center(
-        child: Text(communityDescription)
-      ),
     );
   }
 }
