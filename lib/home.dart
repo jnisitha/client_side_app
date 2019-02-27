@@ -15,51 +15,9 @@ class HomePage extends StatelessWidget {
         ],
       ),
       backgroundColor: Colors.lightBlue[50],
-      body:
-          Center(child: HomeBody()), //prolly a better way of doing this exists.
+      body: HomeBody(), //prolly a better way of doing this exists.
       bottomNavigationBar: BottomAppBar(),
     );
-  }
-}
-
-class HomeBody extends StatelessWidget {
-  final requestServiceRentalButtons = ButtonBar(
-    alignment: MainAxisAlignment.center,
-    children: <Widget>[
-      RaisedButton(
-        color: Colors.lightBlueAccent,
-        child: const Text('Request'),
-        onPressed: () {}, //Route to other pages
-      ),
-      RaisedButton(
-        color: Colors.lightBlueAccent,
-        child: const Text('Service'),
-        onPressed: () {},
-      ),
-      RaisedButton(
-        color: Colors.lightBlueAccent,
-        child: const Text('Rental'),
-        onPressed: () {},
-      ),
-    ],
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-      children: <Widget>[
-        Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[requestServiceRentalButtons]),
-        Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[CommunityFeedList()]),
-        //ListView()
-      ],
-    ));
   }
 }
 
@@ -141,8 +99,93 @@ class SearchBar extends SearchDelegate<String> {
   }
 }
 
-class BottomAppBar extends StatelessWidget {
-  
+class HomeBody extends StatelessWidget {
+  final requestServiceRentalButtons = ButtonBar(
+    alignment: MainAxisAlignment.center,
+    children: <Widget>[
+      RaisedButton(
+        color: Colors.lightBlueAccent,
+        child: const Text('Request'),
+        onPressed: () {}, //Route to other pages
+      ),
+      RaisedButton(
+        color: Colors.lightBlueAccent,
+        child: const Text('Service'),
+        onPressed: () {},
+      ),
+      RaisedButton(
+        color: Colors.lightBlueAccent,
+        child: const Text('Rental'),
+        onPressed: () {},
+      ),
+    ],
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: requestServiceRentalButtons,
+          flex: 1,
+        ),
+        Expanded(
+          child: CommunityFeedList(),
+          flex: 4,
+        )
+        //ListView()
+      ],
+    );
+  }
+}
+
+class CommunityFeedList extends StatefulWidget {
+  /* This is the list of all the favorited/liked communities of the current User.const
+      Changes based on his/her interests and likes which can also change.
+   */
+  @override
+  _CommunityFeedList createState() => _CommunityFeedList();
+}
+
+class _CommunityFeedList extends State<CommunityFeedList> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: EdgeInsets.fromLTRB(50.0, 10.0, 5.0, 2.0),
+//        child: Card(
+        child: ListView.builder(
+          padding: EdgeInsets.all(8.0),
+          itemExtent: 20.0,
+          itemBuilder: (BuildContext context, int index) {
+            if (index.isOdd) return Divider();
+
+            return CommunityFeedListTile();
+          },
+        ));
+  }
+}
+
+class CommunityFeedListTile extends StatefulWidget {
+  /*  This Widget displays an individual communities feed which is/can be related to the current users interests.
+      It changes based on the postings in the Community page.
+  */
+  @override
+  _CommunityFeedListTile createState() => _CommunityFeedListTile();
+}
+
+class _CommunityFeedListTile extends State<CommunityFeedListTile> {
+  //consider cards.
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: 20.0,
+        child: Row(
+          children: <Widget>[Text("Community A")],
+        ));
+  }
+}
+
+class BottomAppBar extends StatelessWidget { //Maybe should be a bottom navigation bar.
   void _goToCreateCommunityPage(BuildContext context) {
     Navigator.pushNamed(context, '/CreateCommunityPage');
   }
@@ -175,53 +218,5 @@ class BottomAppBar extends StatelessWidget {
             ),
           ],
         ));
-  }
-}
-
-class CommunityFeedList extends StatefulWidget {
-  /* This is the list of all the favorited/liked communities of the current User.const
-      Changes based on his/her interests and likes which can also change.
-   */
-
-  @override
-  _CommunityFeedList createState() => _CommunityFeedList();
-}
-
-class _CommunityFeedList extends State<CommunityFeedList> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        height: 500.0,
-        width: 300.0,
-//        child: Card(
-            child: ListView.builder(
-          padding: EdgeInsets.all(8.0),
-          itemExtent: 20.0,
-          itemBuilder: (BuildContext context, int index) {
-            if (index.isOdd) return Divider();
-
-            return CommunityFeedListTile();
-          },
-        ));
-  }
-}
-
-class CommunityFeedListTile extends StatefulWidget {
-  /*  This Widget displays an individual communities feed which is/can be related to the current users interests.
-      It changes based on the postings in the Community page.
-  */
-  @override
-  _CommunityFeedListTile createState() => _CommunityFeedListTile();
-}
-
-class _CommunityFeedListTile extends State<CommunityFeedListTile> {
-  //consider cards.
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 20.0,
-      child: Row(
-      children: <Widget>[Text("Community A")],
-    ));
   }
 }
