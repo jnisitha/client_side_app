@@ -46,7 +46,7 @@ class CommunityPageState extends State<CommunityPage> {
   }
 
   fetchNext() async {
-    String jsonCommunityDataResponse = await rootBundle.loadString('data/community.json');
+    String jsonCommunityDataResponse = await rootBundle.loadString('data/communityPosts.json');
     if (jsonCommunityDataResponse.isNotEmpty) {
       final jsonResult = json.decode(jsonCommunityDataResponse);
 
